@@ -1,0 +1,1 @@
+include nautobot_interfaces_telemetry/templates/nautobot_interfaces_telemetry/*.html

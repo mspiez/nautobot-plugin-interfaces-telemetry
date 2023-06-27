@@ -1,0 +1,24 @@
+{% extends 'dcim/device/base.html' %}
+{% load helpers %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Interfaces Telemetry</strong>
+            </div>
+            {% render_table interfaces_table 'inc/table.html' %}
+        </div>
+    </form>
+    {% table_config_form interfaces_table %}
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/connection_toggles.js' %}?v{{ settings.VERSION }}"></script>
+    <script src="{% static 'js/interface_filtering.js' %}?v{{ settings.VERSION }}"></script>
+    <script src="{% static 'js/tableconfig.js' %}?v{{ settings.VERSION }}"></script>
+{% endblock javascript %}
