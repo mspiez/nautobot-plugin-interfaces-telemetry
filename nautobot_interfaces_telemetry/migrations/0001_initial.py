@@ -2,7 +2,7 @@
 
 import django.core.serializers.json
 from django.db import migrations, models
-import nautobot.core.fields
+import nautobot.core.models.fields
 import nautobot.extras.models.mixins
 import uuid
 
@@ -19,14 +19,14 @@ class Migration(migrations.Migration):
             name='InterfacesStatus',
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False, unique=True)),
-                ('created', models.DateField(auto_now_add=True, null=True)),
+                ('created', models.DateTimeField(auto_now_add=True, null=True)),
                 ('last_updated', models.DateTimeField(auto_now=True, null=True)),
                 ('_custom_field_data', models.JSONField(blank=True, default=dict, encoder=django.core.serializers.json.DjangoJSONEncoder)),
                 ('interface_admin_status', models.CharField(max_length=50)),
                 ('interface_oper_status', models.CharField(max_length=50)),
                 ('interface_name', models.CharField(max_length=50)),
                 ('device_name', models.CharField(max_length=50)),
-                ('slug', nautobot.core.fields.AutoSlugField(blank=True, max_length=100, populate_from=('device_name', 'interface_name'), separator='__', unique=True)),
+                ('slug', nautobot.core.models.fields.AutoSlugField(blank=True, max_length=100, populate_from=('device_name', 'interface_name'), separator='__', unique=True)),
             ],
             options={
                 'unique_together': {('interface_name', 'device_name')},

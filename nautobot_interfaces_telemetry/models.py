@@ -5,8 +5,7 @@ from django.utils.text import slugify
 from typing import Optional
 from django.core.exceptions import ValidationError
 
-
-from nautobot.core.fields import AutoSlugField
+from nautobot.core.models.fields import AutoSlugField
 from nautobot.apps.models import OrganizationalModel
 from nautobot.dcim.models import Device
 from nautobot.dcim.models import Interface
